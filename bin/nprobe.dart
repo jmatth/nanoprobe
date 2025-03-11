@@ -1,6 +1,7 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:nanoprobe/src/commands/assimilate_command.dart';
+import 'package:nanoprobe/src/commands/clean_command.dart';
 import 'package:nanoprobe/src/commands/scan_command.dart';
 
 const String version = '0.0.1';
@@ -20,6 +21,7 @@ void main(List<String> arguments) async {
   );
   app.addCommand(Scan());
   app.addCommand(Assimilate());
+  app.addCommand(Clean());
 
   try {
     await app.run(arguments);
