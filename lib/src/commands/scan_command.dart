@@ -5,6 +5,7 @@ import 'package:args/command_runner.dart';
 import 'package:file/local.dart';
 import 'package:glob/glob.dart';
 import 'package:nanoprobe/src/utils/command_helpers.dart';
+import 'package:nanoprobe/src/utils/constants.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
@@ -27,12 +28,12 @@ class Scan extends Command {
     await Future.delayed(const Duration(seconds: 3));
 
     final rootPubspec = Pubspec.parse(
-      await File('pubspec.yaml').readAsString(),
+      await File(pubspecPath).readAsString(),
     );
     final knownProjects = rootPubspec.workspace ?? const [];
     logger.trace('Known projects:\n${knownProjects.join('\n')}');
 
-    final pubspecsGlob = Glob('packages/**/pubspec.yaml');
+    final pubspecsGlob = Glob('packages/**/$pubspecPath');
     final globResults = pubspecsGlob.listFileSystem(const LocalFileSystem());
     final newProjects =
         await globResults

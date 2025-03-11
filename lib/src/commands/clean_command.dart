@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:nanoprobe/src/utils/command_helpers.dart';
+import 'package:nanoprobe/src/utils/constants.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:path/path.dart' as p;
 
@@ -20,12 +21,12 @@ class Clean extends Command {
     logger.progress('Cleaning pubspec_override.yaml files from sub-projects');
 
     final rootPubspec = Pubspec.parse(
-      await File('pubspec.yaml').readAsString(),
+      await File(pubspecPath).readAsString(),
     );
     final knownProjects = rootPubspec.workspace ?? const [];
 
     for (final project in knownProjects) {
-      final psOverride = File(p.join(project, 'pubspec_override.yaml'));
+      final psOverride = File(p.join(project, pubspecOverridesPath));
       if (!(await psOverride.exists())) continue;
       logger.trace('Removing ${psOverride.path}');
       await psOverride.delete();
