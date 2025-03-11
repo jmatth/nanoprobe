@@ -12,6 +12,12 @@ void printUsage(ArgParser argParser) {
 
 void main(List<String> arguments) async {
   final app = CommandRunner('nprobe', 'TODO');
+  app.argParser.addFlag(
+    'verbose',
+    abbr: 'v',
+    defaultsTo: false,
+    help: 'Enable verbose logging',
+  );
   app.addCommand(Scan());
   app.addCommand(Assimilate());
 
