@@ -26,6 +26,7 @@ class Clean extends Command {
 
     for (final project in knownProjects) {
       final psOverride = File(p.join(project, 'pubspec_override.yaml'));
+      if (!(await psOverride.exists())) continue;
       logger.trace('Removing ${psOverride.path}');
       await psOverride.delete();
     }

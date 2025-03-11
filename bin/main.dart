@@ -3,6 +3,7 @@ import 'package:args/command_runner.dart';
 import 'package:nanoprobe/src/commands/assimilate_command.dart';
 import 'package:nanoprobe/src/commands/clean_command.dart';
 import 'package:nanoprobe/src/commands/scan_command.dart';
+import 'package:nanoprobe/src/utils/constants.dart';
 
 const String version = '0.0.1';
 
@@ -14,7 +15,7 @@ void printUsage(ArgParser argParser) {
 void main(List<String> arguments) async {
   final app = CommandRunner('nprobe', 'TODO');
   app.argParser.addFlag(
-    'verbose',
+    verboseFlagName,
     abbr: 'v',
     defaultsTo: false,
     help: 'Enable verbose logging',
