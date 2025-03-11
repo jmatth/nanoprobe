@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:file/local.dart';
 import 'package:glob/glob.dart';
+import 'package:nanoprobe/src/utils/command_helpers.dart';
 import 'package:path/path.dart' as p;
-import 'package:cli_util/cli_logging.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 
@@ -21,7 +21,7 @@ class Scan extends Command {
 
   @override
   FutureOr? run() async {
-    final logger = Logger.verbose();
+    final logger = getLogger();
 
     logger.progress('Scanning for new sub-projects');
     await Future.delayed(const Duration(seconds: 3));
