@@ -2,12 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:cli_util/cli_util.dart';
-import 'package:file/file.dart' hide File;
 import 'package:file/local.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as p;
-import 'package:collection/collection.dart';
 import 'package:cli_util/cli_logging.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
