@@ -7,7 +7,7 @@ environment:
   sdk: ^3.7.0
 
 executables:
-  nprobe:
+  nprobe: main
 
 # Add regular dependencies here.
 dependencies:
