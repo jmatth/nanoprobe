@@ -20,7 +20,7 @@ class Assimilate extends Command {
     logger.progress('Installing pubspec_overrides');
     final workspace =
         Pubspec.parse(await File('pubspec.yaml').readAsString()).workspace ??
-            const [];
+        const [];
     for (final project in workspace) {
       final pubspecFile = File(p.join(project, 'pubspec.yaml'));
       final pubspec = Pubspec.parse(await pubspecFile.readAsString());
@@ -28,11 +28,13 @@ class Assimilate extends Command {
         logger.trace('$project already has resolution: workspace, skipping');
         continue;
       }
-      final pubspecOverrideFile =
-          File(p.join(project, 'pubspec_overrides.yaml'));
+      final pubspecOverrideFile = File(
+        p.join(project, 'pubspec_overrides.yaml'),
+      );
       logger.trace('Installing ${pubspecOverrideFile.path}');
-      await pubspecOverrideFile
-          .writeAsString('resolution: workspace\ndependency_overrides: {}\n');
+      await pubspecOverrideFile.writeAsString(
+        'resolution: workspace\ndependency_overrides: {}\n',
+      );
     }
 
     logger.stdout('All sub-projects assimilated');
